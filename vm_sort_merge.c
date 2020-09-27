@@ -1,22 +1,10 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   vm_sort_merge.c                                    :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: ghusk <ghusk@student.42.fr>                +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/08/20 21:45:40 by val               #+#    #+#             */
-/*   Updated: 2020/08/28 14:27:12 by ghusk            ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
+#include "list.h"
 
-#include "vm_list.h"
-
-void	push_heap(t_champ *head, t_champ **heap, int block)
+void	push_heap(t_list *head, t_list **heap, int block)
 {
 	int i;
 	int	k;
-	t_champ *tmp;
+	t_list *tmp;
 	
 	heap[0] = (void *)0;
 	heap[1] = (void *)0;
@@ -37,10 +25,10 @@ void	push_heap(t_champ *head, t_champ **heap, int block)
 	}
 }
 
-t_champ	*merge_list(t_champ **heap, int block)
+t_list	*merge_list(t_list **heap, int block)
 {
-	t_champ	*head;
-	t_champ	*champ;
+	t_list	*head;
+	t_list	*champ;
 	int	k[2];
 	int	max;
 
@@ -87,9 +75,9 @@ t_champ	*merge_list(t_champ **heap, int block)
 	return (head);
 }
 
-t_champ	*vm_sort_merge(t_champ *head, int len)
+t_list	*vm_sort_merge(t_list *head, int len)
 {
-	t_champ *heap[2];
+	t_list *heap[2];
 	int	block;
 
 	block = 1;

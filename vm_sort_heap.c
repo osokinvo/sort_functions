@@ -1,21 +1,9 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   vm_sort_heap.c                                     :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: val <val@student.42.fr>                    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/08/20 21:45:15 by val               #+#    #+#             */
-/*   Updated: 2020/08/27 11:49:56 by val              ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
+#include "list.h"
 
-#include "vm_list.h"
-
-t_champ	*vm_get_champ(t_champ **heap, int len)
+t_list	*vm_get_champ(t_list **heap, int len)
 {
-	t_champ *champ;
-	t_champ	*tmp;
+	t_list	*champ;
+	t_list	*tmp;
 	int	i;
 	int	c[2];
 
@@ -49,10 +37,10 @@ t_champ	*vm_get_champ(t_champ **heap, int len)
 	return (champ);
 }
 
-t_champ	*vm_get_head(t_champ **heap, int len)
+t_list	*vm_get_head(t_list **heap, int len)
 {
-	t_champ	*champ;
-	t_champ	*head;
+	t_list	*champ;
+	t_list	*head;
 
 	head = (void *)0;
 	if (len--)
@@ -69,11 +57,11 @@ t_champ	*vm_get_head(t_champ **heap, int len)
 	return (head);
 }
 
-t_champ	*vm_sort_heap(t_champ *head, t_champ **heap, int len)
+t_list	*vm_sort_heap(t_list *head, t_list **heap, int len)
 {
-	t_champ	*tmp;
-	int	i;
-	int c[2];
+	t_list	*tmp;
+	int		i;
+	int 	c[2];
 
 	i = 0;
 	while(i < len)
@@ -82,7 +70,7 @@ t_champ	*vm_sort_heap(t_champ *head, t_champ **heap, int len)
 		head = head->next;
 		i++;
 	}
-	i = (len - 1) / 2;
+	i = (len - 2) / 2;
 	while (i >= 0)
 	{
 		c[0] = (i * 2) + 1;

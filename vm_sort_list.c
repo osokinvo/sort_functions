@@ -1,27 +1,28 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   vm_sort_list.c                                     :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: val <val@student.42.fr>                    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/08/18 14:47:52 by val               #+#    #+#             */
-/*   Updated: 2020/08/21 06:35:53 by val              ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
-#include "vm_list.h"
+#include "list.h"
 #include <stdlib.h>
 #include <errno.h>
 
-int	order(t_champ *first, t_champ *second)
+int	order(t_list *first, t_list *second)
 {
 	if (first->id < second->id)
 		return (1);
 	return (0);
 }
 
-int	vm_list_is_sort(t_champ *head)
+int	vm_len_champ(t_list *head)
+{
+	int	len;
+
+	len = 0;
+	while (head)
+	{
+		len++;
+		head = head->next;
+	}
+	return (len);
+}
+
+int	vm_list_is_sort(t_list *head)
 {
 	while(head->next)
 	{
@@ -32,15 +33,15 @@ int	vm_list_is_sort(t_champ *head)
 	return (1);
 }
 
-t_champ	*vm_sort_list(t_champ *head)
+t_list	*vm_sort_list(t_list *head)
 {
-	t_champ **heap;
+	t_list **heap;
 	int	len;
 
 	if (!head || vm_list_is_sort(head))
 		return (head);
 	len = vm_len_champ(head);
-	if (!(heap = (t_champ **)malloc(len * sizeof(t_champ *))))
+	if (!(heap = (t_list **)malloc(len * sizeof(t_list *))))
 	{
 		errno = 0;
 		return (vm_sort_merge(head, len));
